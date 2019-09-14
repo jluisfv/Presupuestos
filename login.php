@@ -47,7 +47,7 @@
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña">
                     </div>
 
-                    <a href="plantilla.html" class="btn btn-primary btn-user btn-block">
+                    <a href="main.php?module=index" class="btn btn-primary btn-user btn-block">
                       Login
                     </a>
                   </form>
