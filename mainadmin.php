@@ -35,7 +35,7 @@ endif;
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main.php?module=index">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="mainadmin.php?module=index">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-money-check-alt"></i>
                 </div>
@@ -54,8 +54,8 @@ endif;
                 </a>
                 <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="main.php?module=listpresu">Listado General</a>
-                        <a class="collapse-item" href="main.php?module=createpresu">Crear Presupuesto</a>
+                        <a class="collapse-item" href="mainadmin.php?module=listpresu">Listado General</a>
+                        <a class="collapse-item" href="mainadmin.php?module=createpresu">Crear Presupuesto</a>
                     </div>
                 </div>
             </li>
@@ -66,8 +66,8 @@ endif;
                 </a>
                 <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="main.php?module=listuser">Listado General</a>
-                        <a class="collapse-item" href="main.php?module=createuser">Crear Usuario</a>
+                        <a class="collapse-item" href="mainadmin.php?module=listuser">Listado General</a>
+                        <a class="collapse-item" href="mainadmin.php?module=createuser">Crear Usuario</a>
                     </div>
                 </div>
             </li>
@@ -138,7 +138,7 @@ endif;
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="mainadmin.php?module=editperfil">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
@@ -162,31 +162,37 @@ endif;
                     if (!empty($module)) :
                         //Modules for Usuario Function
                         if ($module == "listuser") :
-                            include "inc/usuarios/listuser.php";
+                            include "inc/administrador/usuarios/listuser.php";
                         endif;
                         if ($module == "updateuser") :
-                            include "inc/usuarios/updateuser.php";
+                            include "inc/administrador/usuarios/updateuser.php";
                         endif;
                         if ($module == "createuser") :
-                            include "inc/usuarios/createuser.php";
+                            include "inc/administrador/usuarios/createuser.php";
                         endif;
 
                         //Modules for Presupuesto Function
                         if ($module == "createpresu") :
-                            include "inc/presupuestos/createpresu.php";
+                            include "inc/administrador/presupuestos/createpresu.php";
                         endif;
                         if ($module == "updatepresu") :
-                            include "inc/presupuestos/updatepresu.php";
+                            include "inc/administrador/presupuestos/updatepresu.php";
                         endif;
                         if ($module == "listpresu") :
-                            include "inc/presupuestos/listpresu.php";
+                            include "inc/administrador/presupuestos/listpresu.php";
                         endif;
                         if ($module == "detailpresu") :
-                            include "inc/presupuestos/detailpresu.php";
+                            include "inc/administrador/presupuestos/detailpresu.php";
                         endif;
                         if ($module == "evaluatepresu") :
-                            include "inc/presupuestos/evaluatepresu.php";
+                            include "inc/administrador/presupuestos/evaluatepresu.php";
                         endif;
+
+                        //Modules Prefil 
+                        if ($module == "editperfil") :
+                            include "inc/administrador/perfil/editperfil.php";
+                        endif;
+
 
                     endif;
                     ?>

@@ -6,7 +6,7 @@
     <h1 class="h3 mb-0 text-gray-800">Listado de Usuarios</h1>
 </div>
 <div class="form-group">
-    <a href="main.php?module=createuser" class="btn btn-primary">Nuevo Usuario</a>
+    <a href="mainadmin.php?module=createuser" class="btn btn-primary">Nuevo Usuario</a>
 </div>
 <table class="table">
     <thead class="thead-light">
@@ -24,21 +24,21 @@
             <td>Mark</td>
             <td>Otto</td>
             <td>Operador</td>
-            <td><a href="main.php?module=updateuser" class="btn btn-warning btn-sm">Modificar Usuario</a></td>
+            <td><a href="mainadmin.php?module=updateuser" class="btn btn-warning btn-sm">Modificar Usuario</a></td>
         </tr>
         <tr>
             <th scope="row">2</th>
             <td>Jacob</td>
             <td>Thornton</td>
             <td>Administrador</td>
-            <td><a href="main.php?module=updateuser" class="btn btn-warning btn-sm">Modificar Usuario</a></td>
+            <td><a href="mainadmin.php?module=updateuser" class="btn btn-warning btn-sm">Modificar Usuario</a></td>
         </tr>
         <tr>
             <th scope="row">3</th>
             <td>Larry</td>
             <td>the Bird</td>
             <td>Super administrador</td>
-            <td><a href="main.php?module=updateuser" class="btn btn-warning btn-sm">Modificar Usuario</a></td>
+            <td><a href="mainadmin.php?module=updateuser" class="btn btn-warning btn-sm">Modificar Usuario</a></td>
         </tr>
     </tbody>
 </table>
