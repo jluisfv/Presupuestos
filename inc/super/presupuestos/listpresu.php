@@ -1,3 +1,28 @@
+<?php
+if (!isset($_SESSION)) {
+    # code...
+    session_start();
+}
+
+if (@!$_SESSION['user']) {
+    echo "<script>alert('no haz iniciado sesion ');</script>";
+    header("Location:login.php");
+}
+else{
+    # code.
+    if (isset($_GET['module']) && !empty($_GET['module']))
+     :
+    $module = $_GET['module'];
+   
+
+endif;
+}
+?>
+
+
+
+
+
 <script>
     document.getElementById("TitleModule").innerHTML = "Lista de Presupuestos";
 </script>
@@ -20,17 +45,37 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Gastos Operativos de Flota</td>
-            <td>Cubres gastos de cumbustible y mantenimiento.</td>
-            <td>13/09/2019</td>
-            <td>
-                <a href="mainsuper.php?module=detailpresu" class="btn btn-sm btn-dark">Ver detalle</a>
-                <a href="mainsuper.php?module=evaluatepresu" class="btn btn-sm btn-success">Evaluar</a>
-                <a href="mainsuper.php?module=updatepresu" class="btn btn-sm btn-warning">Modificar</a>
+       
+        <?php
+        include 'conectar.php';
+        $sqlquery = "SELECT 
+id_presupuesto,
+titulo,
+descripcion,
+fecha_publicacion
+from 
+[presupuesto].[dbo].presupuesto";
+$result = sqlsrv_query($conn,$sqlquery);
+ while($row = sqlsrv_fetch_array($result)){
+    ?>
+   <tr>
+  <th scope="row"> <?php echo $row['id_presupuesto'];?> </th>
+  <td> <?php echo $row['titulo'];?> </td>
+  <td> <?php echo $row['descripcion'];?> </td>
+  <td> <?php echo   $row['fecha_publicacion']->format('d/m/Y');?> </td>
+  <td>
+                <a href="mainsuper.php?module=detailpresu&id=<?php echo $row['id_presupuesto'];?> " class="btn btn-sm btn-dark">Ver detalle</a>
+                <a href="mainsuper.php?module=evaluatepresu&id=<?php echo $row['id_presupuesto'];?> " class="btn btn-sm btn-success">Evaluar</a>
+                <a href="mainsuper.php?module=updatepresu&id=<?php echo $row['id_presupuesto'];?> " class="btn btn-sm btn-warning">Modificar</a>
                 
-            </td>
-        </tr>
+</td>
+  </tr>
+
+
+<?php }
+
+        ?>
+
+
     </tbody>
 </table>

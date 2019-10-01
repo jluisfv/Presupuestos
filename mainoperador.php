@@ -1,9 +1,16 @@
 <?php
-if (isset($_GET['module']) && !empty($_GET['module'])) :
+session_start();
+if (@!$_SESSION['user']) {
+    echo "<script>alert('no haz iniciado sesion ');</script>";
+    header("Location:login.php");
+}
+else{
+    # code...
+    if (isset($_GET['module']) && !empty($_GET['module'])) :
     $module = $_GET['module'];
 endif;
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

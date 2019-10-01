@@ -19,16 +19,7 @@
         </div>
     </div>
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputState">Descargar Excel con detalle de presupuesto:</label><br>
-            <button class="btn btn-success">Descargar <i class="fas fa-download"></i></button>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputState">Cargar Excel con detalle de presupuesto:</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
-    </div>
+ 
     <div class="form-group">
         <a href="main.php?module=listpresu" class="btn btn-primary">Modificar Presupuesto</a>
     </div>

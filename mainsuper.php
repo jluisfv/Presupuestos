@@ -1,9 +1,15 @@
 <?php
-if (isset($_GET['module']) && !empty($_GET['module'])) :
+session_start();
+if (@!$_SESSION['user']) {
+    echo "<script>alert('no haz iniciado sesion ');</script>";
+	header("Location:login.php");
+}
+else{
+	# code...
+	if (isset($_GET['module']) && !empty($_GET['module'])) :
     $module = $_GET['module'];
 endif;
-?>
-
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +62,7 @@ endif;
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="mainsuper.php?module=listpresu">Listado General</a>
                         <a class="collapse-item" href="mainsuper.php?module=createpresu">Crear Presupuesto</a>
+                         <a class="collapse-item" href="mainsuper.php?module=evaluatepresu">estado Presupuesto</a>
                     </div>
                 </div>
             </li>
@@ -133,7 +140,7 @@ endif;
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">usuario</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['user']?></span>
                                 <i class="fas fa-caret-down fa-sm fa-fw mr-2 text-gray-400"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -175,6 +182,9 @@ endif;
                         if ($module == "createpresu") :
                             include "inc/super/presupuestos/createpresu.php";
                         endif;
+                         if ($module == "insertpresu") :
+                            include "inc/super/presupuestos/insert.php";
+                        endif;
                         if ($module == "updatepresu") :
                             include "inc/super/presupuestos/updatepresu.php";
                         endif;
@@ -184,13 +194,26 @@ endif;
                         if ($module == "detailpresu") :
                             include "inc/super/presupuestos/detailpresu.php";
                         endif;
+                        if ($module == "procdetall") :
+                            include "inc/super/presupuestos/procesardetalle.php";
+                        endif;
+                        if ($module == "updtdet") :
+                            include "inc/super/presupuestos/updatedetalle.php";
+                        endif;
+                        if ($module == "creardetal") :
+                            include "inc/super/presupuestos/creardetalle.php";
+                        endif;
                         if ($module == "evaluatepresu") :
                             include "inc/super/presupuestos/evaluatepresu.php";
                         endif;
 
+
                         //Modules Prefil 
                         if ($module == "editperfil") :
                             include "inc/super/perfil/editperfil.php";
+                        endif;
+                        if ($module == "updateperfil") :
+                            include "inc/super/perfil/update.php";
                         endif;
 
 
@@ -235,7 +258,7 @@ endif;
                 <div class="modal-body">Selecciona cerrra sesión para confirmar.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="login.php">Cerrar Sesión</a>
+                    <a class="btn btn-primary" href="desconectar.php">Cerrar Sesión</a>
                 </div>
             </div>
         </div>

@@ -19,11 +19,6 @@
         </div>
     </div>
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputState">Cargar Excel con detalle de presupuesto:</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
-    </div>
+    
     <a href="main.php?module=listpresu" class="btn btn-primary">Registrar Presupuesto</a>
 </form>

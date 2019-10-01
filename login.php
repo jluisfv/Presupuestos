@@ -35,7 +35,7 @@ if (isset($_GET['nombre'])) {
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="" style="background: url(img/back.jpg);">
 
 	<div class="container">
 
@@ -54,12 +54,12 @@ if (isset($_GET['nombre'])) {
 									<div class="text-center">
 										<h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
 									</div>
-									<form class="user" method="GET" action="login.php">
+									<form class="user" method="POST" action="procesar.php">
 										<div class="form-group">
 											<input type="text" name="nombre" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Usuario" required>
 										</div>
 										<div class="form-group">
-											<input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña" required>
+											<input type="password"name="clave"  class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña" required>
 										</div>
 										
 										<input type="submit" class="btn btn-primary btn-user btn-block" value="Login">

@@ -1,7 +1,15 @@
 <?php
-if (isset($_GET['module']) && !empty($_GET['module'])) :
+session_start();
+if (@!$_SESSION['user']) {
+    echo "<script>alert('no haz iniciado sesion ');</script>";
+    header("Location:login.php");
+}
+else{
+    # code...
+    if (isset($_GET['module']) && !empty($_GET['module'])) :
     $module = $_GET['module'];
 endif;
+}
 ?>
 
 
@@ -56,6 +64,7 @@ endif;
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="mainadmin.php?module=listpresu">Listado General</a>
                         <a class="collapse-item" href="mainadmin.php?module=createpresu">Crear Presupuesto</a>
+                        
                     </div>
                 </div>
             </li>

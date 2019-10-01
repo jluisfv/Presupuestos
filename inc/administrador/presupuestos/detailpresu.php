@@ -15,6 +15,8 @@
 
         <h5 class="heading">Detalle</h3>
 
+
+
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -22,6 +24,7 @@
                     <th scope="col">Detalle</th>
                     <th scope="col">Costo</th>
                     <th scope="col">Rubro</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -30,18 +33,28 @@
                     <td>Vales de Combustible.</td>
                     <td>$3,000</td>
                     <td>Energetico</td>
+                    <td> <a href="mainadmin.php?module=updatepresu" class="btn btn-sm btn-warning">Modificar</a></td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
                     <td>Pagos de Cuotas.</td>
                     <td>$10,000</td>
                     <td>Financiero</td>
+                    <td> <a href="mainadmin.php?module=updatepresu" class="btn btn-sm btn-warning">Modificar</a></td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td>Reparaciones.</td>
                     <td>$1,000</td>
                     <td>Automotriz</td>
+                    <td> <a href="mainadmin.php?module=updatepresu" class="btn btn-sm btn-warning">Modificar</a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td scope="row"><a href="" class="btn btn-primary">Add+</a></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>

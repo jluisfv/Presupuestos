@@ -1,3 +1,25 @@
+<?php
+if (!isset($_SESSION)) {
+    # code...
+    session_start();
+}
+
+if (@!$_SESSION['user']) {
+    echo "<script>alert('no haz iniciado sesion ');</script>";
+    header("Location:login.php");
+}
+else{
+    # code.
+    if (isset($_GET['module']) && !empty($_GET['module']))
+     :
+    $module = $_GET['module'];
+   
+
+endif;
+}
+?>
+
+
 <script>
     document.getElementById("TitleModule").innerHTML = "Modificar Presupuesto";
 </script>
