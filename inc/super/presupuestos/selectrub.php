@@ -26,24 +26,15 @@ endif;
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Detalle Presupuesto</h1>
 </div>
-<form method="POST" action="mainsuper.php?module=procdetall">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Detalle:</label>
-            <input type="text" class="form-control" name="Detalle" placeholder="">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">Costo:</label>
-            <input type="number" step="any" class="form-control" name="Costo" id="inputEmail4" placeholder="">
-        </div>
-    </div>
+
+<form method="Get" action="http://localhost/Presupuestos/inc/super/presupuestos/rep_rubo.php">
+  
     <div class="form-row">
         <div class="form-group col-md-4">
-            <label for="inputState">Rubro:</label>
-            <select id="inputState" class="form-control" name="rubro">
-                <?php
+            <label for="inputState">Rubro :</label>
+            <select id="inputState" class="form-control" name="id" id="id"  >
+                 <?php
+
                 include 'conectar.php';
                 $sqlquery ="SELECT id_rubro,nombre from [presupuesto].[dbo].rubro";
                 $result = sqlsrv_query($conn,$sqlquery);
@@ -52,11 +43,44 @@ endif;
                 <option  value="<?php echo $row['id_rubro'] ?>"><?php echo $row['nombre'] ?></option>
                 
 
-             <?php } ?>   
+             <?php } ?>    
+                
             </select>
-            <input type="hidden" class="form-control" name="idpresu" id="inputEmail4" value="<?php echo $_GET['id'] ?>" placeholder="">
+           
         </div>
+
     </div>
+    <div class="row">
+         <div class="form-group col-md-4">
+     Año:
+    <select  id="inputState" class="form-control" name="anio" required=""  >
+        <option value="0">Seleccione</option>
+    <?php  
+    $desde = 2010;
+    $hasta = date('Y');
+
+    while ($desde < $hasta)
+    {
+        $desde =  $desde +1
     
-    <button type="submit" class="btn btn-primary">Ingresar</button>
+
+    ?>
+  <option  value="<?php echo $desde ?>"><?php echo $desde ?></option>
+
+   <?php
+}
+   ?>
+    </div>
+</select>
+</div>
+</div>
+     <div class=" row">
+         
+         <div class="col-md-3">
+             <button class="btn btn-primary" type="submit">Generar</button>
+         </div>
+     </div>
+  
 </form>
+
+

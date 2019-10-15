@@ -23,11 +23,13 @@ include 'conectar.php';
 	$monto = $_POST["Costo"];
     $rubro =$_POST["rubro"];
     $id = $_POST["idpresu"]; 
+    $iddt = $_POST["iddtt"]; 
+
 
     echo $id;
 	
-$sqlquery = "INSERT INTO [presupuesto].[dbo].detalle (id_presupuesto,detalle,costo_estimado,id_rubro)
-VALUES ('$id','$detalle','$monto','$rubro')
+$sqlquery = "UPDATE   [presupuesto].[dbo].detalle  SET detalle='$detalle',costo_estimado='$monto',id_rubro='$rubro'
+WHERE id_detalle = $iddt
 ";
 
 $result = sqlsrv_query($conn,$sqlquery);
@@ -37,7 +39,7 @@ if($result === false){
 else{
 
 if (headers_sent()) {
-    die(" <script>alert('Detalle Registrado');window.opener.location.reload('mainsuper.php?module=listpresu&id=<?php echo $id ?>');self.close();</script>");
+    die(" <script>alert('Detalle Actualizado');window.opener.location.reload('mainsuper.php?module=listpresu&id=<?php echo $id ?>');self.close();</script>");
 }
 else{
     exit(header("Location: mainsuper.php?module=detailpresu&id=<?php echo $id ?>"));

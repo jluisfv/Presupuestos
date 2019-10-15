@@ -1,6 +1,6 @@
 <?php
-$serverName = 'sql5047.site4now.net'; //serverName\instanceName
-$connectionInfo = array( "Database"=>"DB_A4EED7_presupuestos", "UID"=>"DB_A4EED7_presupuestos_admin", "PWD"=>"Joseluis96");
+$serverName = 'DESKTOP-0MSFA00\SQLEXPRESS'; //serverName\instanceName
+$connectionInfo = array( "Database"=>"presupuesto", "UID"=>"marlon", "PWD"=>"marlon321");
 $conn = sqlsrv_connect( $serverName, $connectionInfo);
 
 if( $conn ) {

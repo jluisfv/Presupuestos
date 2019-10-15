@@ -1,6 +1,4 @@
 <?php
-
-
 session_start();
 include 'conectar.php';
 	$usuario =$_POST["nombre"];
@@ -16,9 +14,9 @@ $sqlquery = "SELECT
   a.apellidos as apellidos,
   a.clave as pass
   FROM 
-  [presupuesto].[dbo].usuarios a 
-  INNER JOIN [presupuesto].[dbo].permisos b ON a.id_usuario = b.id_usuario
-  INNER JOIN [presupuesto].[dbo].modulos c ON b.id_modulo = c.id_modulo
+  [dbo].usuarios a 
+  INNER JOIN [dbo].permisos b ON a.id_usuario = b.id_usuario
+  INNER JOIN [dbo].modulos c ON b.id_modulo = c.id_modulo
   WHERE a.usuario = '$usuario' AND  a.clave = '$pass' 
   ";
 echo $sqlquery;
@@ -46,26 +44,26 @@ if(sqlsrv_has_rows($result) != 1){
        $_SESSION['passw'] = $row['pass'];
     }
 #redirects user
-    if ($_SESSION['level'] == 1) {
+    if ($_SESSION['level'] == 1) 
+    {
     	# code...
     	 header("Location: mainsuper.php?module=index");
-    }elseif ($_SESSION['level'] == 2) {
+    }
+    elseif ($_SESSION['level'] == 2) 
+    {
       # code...
       header("Location: mainadmin.php?module=index");
-    }elseif ($_SESSION['level'] == 3) {
+    }
+    elseif ($_SESSION['level'] == 3) 
+    {
       # code...
       header("Location: mainoperador.php?module=index");
-    }else
+    }
+    else
     {
       header("Location:login.php");
     }
    
 }
-
-
-
-
-
-
 
 ?>

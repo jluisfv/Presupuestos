@@ -19,29 +19,27 @@ endif;
 }
 include 'conectar.php';
 
-	$detalle =$_POST["Detalle"];
-	$monto = $_POST["Costo"];
-    $rubro =$_POST["rubro"];
+	$titu =$_POST["titulo"];
+	$desc = $_POST["descripcion"];
     $id = $_POST["idpresu"]; 
 
-    echo $id;
-	
-$sqlquery = "INSERT INTO [presupuesto].[dbo].detalle (id_presupuesto,detalle,costo_estimado,id_rubro)
-VALUES ('$id','$detalle','$monto','$rubro')
-";
+    $sqlquery= "UPDATE  
+[presupuesto].[dbo].presupuesto SET titulo = '$titu',
+descripcion = '$desc' WHERE id_presupuesto = $id  ";
 
 $result = sqlsrv_query($conn,$sqlquery);
+
 if($result === false){
      die( print_r( sqlsrv_errors(), true));
 }
 else{
 
 if (headers_sent()) {
-    die(" <script>alert('Detalle Registrado');window.opener.location.reload('mainsuper.php?module=listpresu&id=<?php echo $id ?>');self.close();</script>");
+    die(" Datos actualizados. Please click on this link: <a href=mainsuper.php?module=listpresu>back </a>");
 }
 else{
     exit(header("Location: mainsuper.php?module=detailpresu&id=<?php echo $id ?>"));
 }
 }
 
- ?>
+?>

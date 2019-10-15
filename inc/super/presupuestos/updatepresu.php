@@ -9,6 +9,29 @@ if (@!$_SESSION['user']) {
     header("Location:login.php");
 }
 else{
+
+    $id = $_GET['id'];
+    include 'conectar.php';
+    $sqlquery = "SELECT 
+id_presupuesto,
+titulo,
+descripcion,
+fecha_publicacion
+from 
+[presupuesto].[dbo].presupuesto
+WHERE id_presupuesto = $id
+";
+$result = sqlsrv_query($conn,$sqlquery);
+ while($row = sqlsrv_fetch_array($result)){
+
+      $_SESSION['titu'] = $row['titulo'];
+       $_SESSION['desc'] = $row['descripcion'];
+       $_SESSION['idpre'] = $row['id_presupuesto'];
+
+     
+ }
+
+
     # code.
     if (isset($_GET['module']) && !empty($_GET['module']))
      :
@@ -27,31 +50,22 @@ endif;
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Complete la siguiente información</h1>
 </div>
-<form>
+<form  method="POST" action="mainsuper.php?module=procesarpres">
     <div class="form-row">
         <div class="form-group col-md-8">
             <label>Titulo:</label>
-            <input type="text" class="form-control" placeholder="">
+            <input type="text" name="titulo" class="form-control" value="<?php echo $_SESSION['titu'] ?>" placeholder="">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-8">
-            <label for="inputEmail4">Descripción:</label>
-            <textarea class="form-control" placeholder=""></textarea>
+            <label for="inputEmail4">Descripción:  </label>
+            <textarea class="form-control" name="descripcion" placeholder=""><?php echo $_SESSION['desc'] ?></textarea>
         </div>
     </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputState">Descargar Excel con detalle de presupuesto:</label><br>
-            <button class="btn btn-success">Descargar <i class="fas fa-download"></i></button>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputState">Cargar Excel con detalle de presupuesto:</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
-    </div>
+    <input type="hidden" class="form-control" name="idpresu" id="inputEmail4" value="<?php echo $_SESSION['idpre'] ?>" placeholder="">
+  
     <div class="form-group">
-        <a href="main.php?module=listpresu" class="btn btn-primary">Modificar Presupuesto</a>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
     </div>
 </form>

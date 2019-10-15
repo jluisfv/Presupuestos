@@ -16,7 +16,8 @@ else{
 id_presupuesto,
 titulo,
 descripcion,
-fecha_publicacion
+fecha_publicacion,
+estado
 from 
 [presupuesto].[dbo].presupuesto
 WHERE id_presupuesto = $idp
@@ -27,6 +28,7 @@ $result = sqlsrv_query($conn,$sqlquery);
       $_SESSION['titu'] = $row['titulo'];
        $_SESSION['desc'] = $row['descripcion'];
        $_SESSION['idpre'] = $row['id_presupuesto'];
+       $_SESSION['esta'] = $row['estado'];
 
      
  }
@@ -52,9 +54,59 @@ endif;
 
         <h5 class="heading">Descripcion</h5>
         <p><?php echo $_SESSION['desc'] ?></p>
+               <?php
+            if ($_SESSION['esta'] == 1)
+            {
+                 $idp = $_GET['id'];
+                $sql = "SELECT comentarion ,nombre+' '+apellidos as nombres
+                from [presupuesto].[dbo].aprovados 
+                join usuarios on  id_usuario =  id_user
+                 where id_presupuesto = $idp ";
+
+                 $result = sqlsrv_query($conn,$sql);
+                while($row = sqlsrv_fetch_array($result)){
+            
+
+
+            ?>
+            <div class="text-center">
+            <p>Aprobado por: </br>
+            <?php echo $row['nombres'] ?></br>
+            Comentario</br>
+            <?php echo $row['comentarion'] ?></p>
+            </div>
+
+            <?php
+                }
+            }
+            elseif ($_SESSION['esta'] == 2) {
+                # code...
+                 $idp = $_GET['id'];
+                $sql = "SELECT coment ,nombre+' '+apellidos as nombres
+                from [presupuesto].[dbo].rechazados 
+                join usuarios on  id_usuario =  id_user
+                 where id_presupuesto = $idp ";
+
+                 $result = sqlsrv_query($conn,$sql);
+                while($row = sqlsrv_fetch_array($result)){
+            
+            
+            ?>
+             <div class="text-center">
+            <p>Rechazado  por: </br>
+            <?php echo $row['nombres'] ?></br>
+            Comentario:</br>
+            <?php echo $row['coment'] ?></p>
+            </div>
+
+            <?php
+        }
+    }
+
+            ?>
+
 
         <h5 class="heading">Detalle</h3>
-
 
 
         <table class="table">
@@ -64,32 +116,17 @@ endif;
                     <th scope="col">Detalle</th>
                     <th scope="col">Costo</th>
                     <th scope="col">Rubro</th>
-                    <th scope="col"></th>
+                    <th scope="col">Opcion</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Vales de Combustible.</td>
-                    <td>$3,000</td>
-                    <td>Energetico</td>
-                    <td> <a href="mainadmin.php?module=updatepresu" class="btn btn-sm btn-warning">Modificar</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Pagos de Cuotas.</td>
-                    <td>$10,000</td>
-                    <td>Financiero</td>
-                    <td> <a href="mainadmin.php?module=updatepresu" class="btn btn-sm btn-warning">Modificar</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Reparaciones.</td>
-                    <td>$1,000</td>
-                    <td>Automotriz</td>
-                    <td> <a href="mainadmin.php?module=updatepresu" class="btn btn-sm btn-warning">Modificar</a></td>
-                </tr>
-                <tr>
+                    <?php
+                    if ($_SESSION['esta'] == 3 ||$_SESSION['esta'] == 0) {
+                        # code...
+                    
+
+                    ?>
+                    <tr>
                     <?php include 'conectar.php';
                      $idp = $_GET['id'];
                         $sqlquery = "SELECT a.id_detalle,a.detalle,a.costo_estimado,b.descripcion from 
@@ -102,9 +139,9 @@ endif;
                          ?>
                          <th scope="row"><?php echo $row['id_detalle']?></th>
                          <td><?php echo $row['detalle']?></td>
-                         <td><?php echo $row['costo_estimado']?></td>
+                         <td>$<?php   echo $row['costo_estimado']?></td>
                          <td><?php echo $row['descripcion']?></td>
-                         <td> <a href="mainsuper.php?module=updtdet&iddt=<?php echo $row['id_detalle']?>" class="btn btn-sm btn-warning">Modificar</a></td>
+                         <td> <a href="mainsuper.php?module=updtdet&iddt=<?php echo $row['id_detalle']?>" target="_blank" onClick="window.open(this.href, this.target, 'width=600,height=600'); return false;" class="btn btn-sm btn-warning">Modificar</a></td>
 
                 </tr>
                 <?php } ?>
@@ -115,7 +152,55 @@ endif;
                     <td></td>
                     <td></td>
                 </tr>
+
+                <?php
+
+            }
+            else
+            {
+                ?>
+
+                   <tr>
+                    <?php include 'conectar.php';
+                     $idp = $_GET['id'];
+                        $sqlquery = "SELECT a.id_detalle,a.detalle,a.costo_estimado,b.descripcion from 
+                                    [presupuesto].[dbo].detalle a
+                                    join [presupuesto].[dbo].rubro b on a.id_rubro = b.id_rubro
+                                    where a.id_presupuesto = $idp ";
+                                    $result = sqlsrv_query($conn,$sqlquery);
+                                    while($row = sqlsrv_fetch_array($result)){
+
+                         ?>
+                         <th scope="row"><?php echo $row['id_detalle']?></th>
+                         <td><?php echo $row['detalle']?></td>
+                         <td>$<?php   echo $row['costo_estimado']?></td>
+                         <td><?php echo $row['descripcion']?></td>
+                         <td> <a   class="btn btn-sm btn-warning" onclick="confirmar()">Modificar</a></td>
+
+                </tr>
+                <?php } ?>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
+                <?php
+
+            }
+                ?>
+            
             </tbody>
         </table>
     </div>
 </div>
+<script language="Javascript"> 
+function confirmar(){ 
+if(confirm('No se puede Modificar detalle el presupuesto se ha cerrado')){
+          
+     }
+}
+</script>

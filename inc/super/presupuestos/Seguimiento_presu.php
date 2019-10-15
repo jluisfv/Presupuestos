@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-if (@!$_SESSION['user']) {
+if (!$_SESSION['user']) {
     echo "<script>alert('no haz iniciado sesion ');</script>";
     header("Location:login.php");
 }
@@ -19,10 +19,6 @@ endif;
 }
 ?>
 
-
-
-
-
 <script>
     document.getElementById("TitleModule").innerHTML = "Lista de Presupuestos";
 </script>
@@ -30,19 +26,14 @@ endif;
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Listado de presupuestos por evaluar</h1>
 </div>
-<div class="form-group">
-    <a href="mainsuper.php?module=createpresu" class="btn btn-primary">Nuevo Presupuesto</a>
-</div>
-<h4> Filtros  </br> </h4>
-<div class="row">
 <div class="form-group col-md-3">
-<form method="POST" action="mainsuper.php?module=listpresu" >
+<form method="POST" action="mainsuper.php?module=seguimiento" >
 
     
     Año:
     <select  id="inputState" class="form-control" name="anio" onchange="this.form.submit()">
         <option value="0">Seleccione</option>
-    <?php  
+<?php  
     $desde = 2010;
     $hasta = date('Y');
 
@@ -50,37 +41,16 @@ endif;
     {
         $desde =  $desde +1
     
-
     ?>
   <option  value="<?php echo $desde ?>"><?php echo $desde ?></option>
 
-   <?php
-}
-   ?>
+<?php
+  }
+?>
 
 </select>
 </form>
 </div>
-
-<div class="form-group col-md-3">
-<form method="POST" action="mainsuper.php?module=listpresu" >
-
-    
-    Estado:
-    <select  id="inputState" class="form-control" name="estado" onchange="this.form.submit()">
-        <option value="-1">Seleccione</option>
-        <option value="1">Aprobados</option> 
-        <option value="3">Revision</option>
-        <option value="2">Rechazados</option>
-        <option value="0">no evaluados</option>
-        
-
-
-</select>
-</form>
-</div>
-</div>
-
 
 <table class="table">
     <thead class="thead-light">
@@ -96,8 +66,8 @@ endif;
     <tbody>
        
         <?php
-        
-        if(empty($_POST["anio"]))
+
+ if(empty($_POST["anio"]))
         {
             $ano = 2019;
         }
@@ -105,22 +75,9 @@ endif;
         {
             $ano = $_POST["anio"];
         }
-        if(empty($_POST["estado"]))
-        {
-            $esta = 1;
-        }
-        else
-        {
-            $esta = $_POST["estado"];
-        }
-        echo $esta;
-        
 
         include 'conectar.php';
-        $sqlquery = "
-
-
-        SELECT 
+        $sqlquery = "SELECT 
 id_presupuesto,
 titulo,
 descripcion,
@@ -130,36 +87,21 @@ case when estado = 0 then 'no evaluado'
     when estado =  2 then 'Rechazado'
     when estado =  3 then 'Revision'  end as estados ,estado
 from 
-[presupuesto].[dbo].presupuesto where datepart(year,fecha_publicacion) = $ano
-and estado = $esta
-";
-
+[dbo].presupuesto WHERE estado = 1 and datepart(year,fecha_publicacion) =$ano ";
 $result = sqlsrv_query($conn,$sqlquery);
  while($row = sqlsrv_fetch_array($result)){
     ?>
    <tr>
   <th scope="row"> <?php echo $row['id_presupuesto'];?> </th>
   <td> <?php echo $row['titulo'];?> </td>
-  <td > <?php echo $row['descripcion'];?> </td>
+  <td> <?php echo $row['descripcion'];?> </td>
   <td> <?php echo   $row['fecha_publicacion']->format('d/m/Y');?> </td>
    <td> <?php echo $row['estados'];?> </td>
   <td>
    
-                <a href="mainsuper.php?module=detailpresu&id=<?php echo $row['id_presupuesto'];?> " class="btn btn-sm btn-dark">Ver detalle</a>
-                 <?php
-    if ($row['estado'] == 0) {
-        # code...
+                <a href="mainsuper.php?module=segui_detalle&id=<?php echo $row['id_presupuesto'];?> " class="btn btn-sm btn-dark">Ver detalle</a>
 
-        $Enable="false";
-    }
-    else
-    {
-        $Enable="true";
-    }
-
-    ?>
-                <a   href="mainsuper.php?module=evaluatepresu&id=<?php echo $row['id_presupuesto'];?> "  class="btn btn-sm btn-success" >Evaluar</a>
-                <a href="mainsuper.php?module=updatepresu&id=<?php echo $row['id_presupuesto'];?> " class="btn btn-sm btn-warning">Modificar</a>
+               
                 
 </td>
   </tr>

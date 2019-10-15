@@ -62,7 +62,9 @@ endif;
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="mainsuper.php?module=listpresu">Listado General</a>
                         <a class="collapse-item" href="mainsuper.php?module=createpresu">Crear Presupuesto</a>
-                         <a class="collapse-item" href="mainsuper.php?module=evaluatepresu">estado Presupuesto</a>
+                         <a class="collapse-item" href="mainsuper.php?module=estados">Reportes</a>
+                         <a class="collapse-item" href="mainsuper.php?module=seguimiento">Ejecucion Presupuesto</a>
+
                     </div>
                 </div>
             </li>
@@ -198,7 +200,13 @@ endif;
                             include "inc/super/presupuestos/procesardetalle.php";
                         endif;
                         if ($module == "updtdet") :
-                            include "inc/super/presupuestos/updatedetalle.php";
+                            include "inc/super/presupuestos/updatedetalle.php";   
+                        endif;
+                        if ($module == "procesarupddt") :
+                            include "inc/super/presupuestos/procesardettup.php";
+                        endif;
+                        if ($module == "procesarpres") :
+                            include "inc/super/presupuestos/procesarpresu.php";
                         endif;
                         if ($module == "creardetal") :
                             include "inc/super/presupuestos/creardetalle.php";
@@ -206,6 +214,52 @@ endif;
                         if ($module == "evaluatepresu") :
                             include "inc/super/presupuestos/evaluatepresu.php";
                         endif;
+                        // procesamiento de revision de presupuestos 
+                        if ($module == "rechazar") :
+                            include "inc/super/presupuestos/rechazar.php";
+                        endif;
+                        if ($module == "revisa") :
+                            include "inc/super/presupuestos/revisar.php";
+                        endif;
+                        if ($module == "aprovar") :
+                            include "inc/super/presupuestos/aprobar.php";
+                        endif;
+                        if ($module == "estados") :
+                            include "inc/super/presupuestos/estados_presu.php";
+                        endif;
+                        // segumiento
+                         if ($module == "seguimiento") :
+                            include "inc/super/presupuestos/Seguimiento_presu.php";
+                        endif;
+                           if ($module == "segui_detalle") :
+                            include "inc/super/presupuestos/seguimi_detalle.php";
+                        endif;
+                         if ($module == "segui_proc") :
+                            include "inc/super/presupuestos/seguimi_procesa.php";
+                        endif;
+                        // reportes
+                        if ($module == "rep_det") :
+                            include "inc/super/presupuestos/selectpresu.php";
+                        endif;
+                             if ($module == "rep_aprov") :
+                            include "inc/super/presupuestos/report_preacept.php";
+                        endif;
+                          if ($module == "rep_rub") :
+                            include "inc/super/presupuestos/selectrub.php";
+                        endif;
+                          if ($module == "selectyear") :
+                            include "inc/super/presupuestos/selectyear.php";
+                        endif;
+                        if ($module == "selectyearrev") :
+                            include "inc/super/presupuestos/select_year_rev.php";
+                        endif;
+                        if ($module == "selectyearrech") :
+                            include "inc/super/presupuestos/select_year_rech.php";
+                        endif;
+                         if ($module == "selectyeargener") :
+                            include "inc/super/presupuestos/selectyear_gene.php";
+                        endif;
+
 
 
                         //Modules Prefil 
@@ -265,11 +319,11 @@ endif;
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>

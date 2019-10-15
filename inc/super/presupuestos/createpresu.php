@@ -39,6 +39,28 @@ endif;
             <textarea class="form-control" placeholder="" name="Descripción"></textarea>
         </div>
     </div>
+        <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputState">Area:</label>
+            <select id="inputState" class="form-control" name="area">
+                <?php
+                include 'conectar.php';
+                $sqlquery ="
+                SELECT 0 AS id_area,'Seleccione' as nom_area
+                UNION
+                SELECT id_area,nom_area from [presupuesto].[dbo].areas";
+                $result = sqlsrv_query($conn,$sqlquery);
+                while($row = sqlsrv_fetch_array($result)){
+                ?>
+                <option  value="<?php echo $row['id_area'] ?>"><?php echo $row['nom_area'] ?></option>
+                
+
+             <?php } ?>   
+            </select>
+            <input type="hidden" class="form-control" name="id" id="inputEmail4" value="<?php echo $_SESSION['id'] ?>" placeholder="">
+            
+        </div>
+    </div>
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="inputEmail4">Inicio:</label>

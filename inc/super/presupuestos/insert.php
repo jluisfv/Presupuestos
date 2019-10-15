@@ -24,9 +24,10 @@ include 'conectar.php';
     $desde =$_POST["desde"];
     $hasta = $_POST["hasta"];
     $id = $_SESSION['id'];
+    $idarea = $_POST["area"];
 	
-$sqlquery = "INSERT INTO [presupuesto].[dbo].presupuesto (titulo,descripcion,fecha_publicacion,fecha_vencimiento,id_usuario,estado,id_empresa)
-VALUES ('$Titulo','$description','$desde','$hasta',$id,1,1)
+$sqlquery = "INSERT INTO [presupuesto].[dbo].presupuesto (titulo,descripcion,fecha_publicacion,fecha_vencimiento,id_usuario,estado,id_empresa,presu_id_area)
+VALUES ('$Titulo','$description','$desde','$hasta',$id,0,1,$idarea)
 ";
 
 $result = sqlsrv_query($conn,$sqlquery);
