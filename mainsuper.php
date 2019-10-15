@@ -1,15 +1,16 @@
 <?php
 session_start();
-if (@!$_SESSION['user']) {
+if (!$_SESSION['user']) {
+    #Redirect to page login cacaso
     echo "<script>alert('no haz iniciado sesion ');</script>";
-	header("Location:login.php");
+    header("Location:login.php");
+} else {
+    #obtener modulo a mostrar
+    if (isset($_GET['module']) && !empty($_GET['module'])) :
+        $module = $_GET['module'];
+    endif;
 }
-else{
-	# code...
-	if (isset($_GET['module']) && !empty($_GET['module'])) :
-    $module = $_GET['module'];
-endif;
-}?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,8 +63,8 @@ endif;
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="mainsuper.php?module=listpresu">Listado General</a>
                         <a class="collapse-item" href="mainsuper.php?module=createpresu">Crear Presupuesto</a>
-                         <a class="collapse-item" href="mainsuper.php?module=estados">Reportes</a>
-                         <a class="collapse-item" href="mainsuper.php?module=seguimiento">Ejecucion Presupuesto</a>
+                        <a class="collapse-item" href="mainsuper.php?module=estados">Reportes</a>
+                        <a class="collapse-item" href="mainsuper.php?module=seguimiento">Ejecucion Presupuesto</a>
 
                     </div>
                 </div>
@@ -142,7 +143,7 @@ endif;
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['user']?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['user'] ?></span>
                                 <i class="fas fa-caret-down fa-sm fa-fw mr-2 text-gray-400"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -184,7 +185,7 @@ endif;
                         if ($module == "createpresu") :
                             include "inc/super/presupuestos/createpresu.php";
                         endif;
-                         if ($module == "insertpresu") :
+                        if ($module == "insertpresu") :
                             include "inc/super/presupuestos/insert.php";
                         endif;
                         if ($module == "updatepresu") :
@@ -200,7 +201,7 @@ endif;
                             include "inc/super/presupuestos/procesardetalle.php";
                         endif;
                         if ($module == "updtdet") :
-                            include "inc/super/presupuestos/updatedetalle.php";   
+                            include "inc/super/presupuestos/updatedetalle.php";
                         endif;
                         if ($module == "procesarupddt") :
                             include "inc/super/presupuestos/procesardettup.php";
@@ -228,26 +229,26 @@ endif;
                             include "inc/super/presupuestos/estados_presu.php";
                         endif;
                         // segumiento
-                         if ($module == "seguimiento") :
+                        if ($module == "seguimiento") :
                             include "inc/super/presupuestos/Seguimiento_presu.php";
                         endif;
-                           if ($module == "segui_detalle") :
+                        if ($module == "segui_detalle") :
                             include "inc/super/presupuestos/seguimi_detalle.php";
                         endif;
-                         if ($module == "segui_proc") :
+                        if ($module == "segui_proc") :
                             include "inc/super/presupuestos/seguimi_procesa.php";
                         endif;
                         // reportes
                         if ($module == "rep_det") :
                             include "inc/super/presupuestos/selectpresu.php";
                         endif;
-                             if ($module == "rep_aprov") :
+                        if ($module == "rep_aprov") :
                             include "inc/super/presupuestos/report_preacept.php";
                         endif;
-                          if ($module == "rep_rub") :
+                        if ($module == "rep_rub") :
                             include "inc/super/presupuestos/selectrub.php";
                         endif;
-                          if ($module == "selectyear") :
+                        if ($module == "selectyear") :
                             include "inc/super/presupuestos/selectyear.php";
                         endif;
                         if ($module == "selectyearrev") :
@@ -256,7 +257,7 @@ endif;
                         if ($module == "selectyearrech") :
                             include "inc/super/presupuestos/select_year_rech.php";
                         endif;
-                         if ($module == "selectyeargener") :
+                        if ($module == "selectyeargener") :
                             include "inc/super/presupuestos/selectyear_gene.php";
                         endif;
 

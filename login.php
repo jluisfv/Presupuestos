@@ -1,17 +1,18 @@
 <?php
-if (isset($_GET['nombre'])) {
-	$user = $_GET['nombre'];
-
-	if ($user == "luis" || $user == "eduardo") {
+if (isset($_SESSION['id'])) :
+	if ($_SESSION['level'] == 1) {
+		# code...
 		header("Location: mainsuper.php?module=index");
-	} else if ($user == "marlon" || $user == "david") {
+	} elseif ($_SESSION['level'] == 2) {
+		# code...
 		header("Location: mainadmin.php?module=index");
-	} else if ($user == "ricardo" || $user == "jamilton"){
+	} elseif ($_SESSION['level'] == 3) {
+		# code...
 		header("Location: mainoperador.php?module=index");
-	}else{
-		echo "<script>alert('Usuario no valido')</script>";
+	} else {
+		header("Location:login.php");
 	}
-}
+endif;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +51,11 @@ if (isset($_GET['nombre'])) {
 						<div class="row">
 
 							<div class="col-lg-12">
+								<?php
+								if (isset($_GET['msg'])) {
+									echo "<div class='alert alert-danger'>Credenciales incorrectas.</div>";
+								}
+								?>
 								<div class="p-5">
 									<div class="text-center">
 										<h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
@@ -59,9 +65,9 @@ if (isset($_GET['nombre'])) {
 											<input type="text" name="nombre" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Usuario" required>
 										</div>
 										<div class="form-group">
-											<input type="password"name="clave"  class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña" required>
+											<input type="password" name="clave" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña" required>
 										</div>
-										
+
 										<input type="submit" class="btn btn-primary btn-user btn-block" value="Login">
 
 									</form>
@@ -79,11 +85,11 @@ if (isset($_GET['nombre'])) {
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="js/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
