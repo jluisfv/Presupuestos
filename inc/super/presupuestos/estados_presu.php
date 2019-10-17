@@ -37,9 +37,9 @@ endif;
     <div class="card-header">
         <form class="form-inline">
             <div class="mx-auto">
-                <a href="mainsuper.php?module=selectyear" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Aprobados</a>
-                <a href="mainsuper.php?module=selectyearrev" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;"  class="btn btn-warning mr-2 ml-2">Revisión</a>
-                <a href="mainsuper.php?module=selectyearrech" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;"  class="btn btn-danger mr-2 ml-2">Rechazados</a>
+                <a href="mainreport.php?module=selectyear" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Aprobados</a>
+                <a href="mainreport.php?module=selectyearrev" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;"  class="btn btn-warning mr-2 ml-2">Revisión</a>
+                <a href="mainreport.php?module=selectyearrech" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;"  class="btn btn-danger mr-2 ml-2">Rechazados</a>
             </div>
         </form>
     </div>
@@ -54,7 +54,7 @@ endif;
     <div class="card-header">
         <form class="form-inline">
             <div class="mx-auto">
-                <a href="mainsuper.php?module=rep_det" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Presupuestos</a>
+                <a href="mainreport.php?module=rep_det" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Presupuestos</a>
                 
             </div>
         </form>
@@ -70,7 +70,7 @@ endif;
     <div class="card-header">
         <form class="form-inline">
             <div class="mx-auto">
-                <a href="mainsuper.php?module=rep_rub" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Presupuestos</a>
+                <a href="mainreport.php?module=rep_rub" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Presupuestos</a>
                 
             </div>
         </form>
@@ -85,8 +85,7 @@ endif;
     <div class="card-header">
         <form class="form-inline">
             <div class="mx-auto">
-                <a href="mainsuper.php?module=selectyeargener" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Consolidado</a>
-                
+                <a href="mainreport.php?module=selectyeargener" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Consolidado</a>             
             </div>
         </form>
     </div>

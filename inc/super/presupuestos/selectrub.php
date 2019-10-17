@@ -27,7 +27,7 @@ endif;
     <h1 class="h3 mb-0 text-gray-800">Detalle Presupuesto</h1>
 </div>
 
-<form method="Get" action="http://localhost/Presupuestos/inc/super/presupuestos/rep_rubo.php">
+<form method="Get" action="http://localhost/Presupuestos/inc/super/reportes/rep_rubo.php">
   
     <div class="form-row">
         <div class="form-group col-md-4">
@@ -36,7 +36,7 @@ endif;
                  <?php
 
                 include 'conectar.php';
-                $sqlquery ="SELECT id_rubro,nombre from [presupuesto].[dbo].rubro";
+                $sqlquery ="SELECT id_rubro,nombre from rubro";
                 $result = sqlsrv_query($conn,$sqlquery);
                 while($row = sqlsrv_fetch_array($result)){
                 ?>

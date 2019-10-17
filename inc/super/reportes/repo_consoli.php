@@ -47,7 +47,7 @@ function Footer()
 }
 }
 $anio = $_GET['id'];
-include 'conectar.php';
+include '../../../conectar.php';
 $sql = "SELECT 
 d.titulo,
 b.costo_estimado,
