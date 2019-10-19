@@ -8,6 +8,25 @@ if (!$_SESSION['user']) {
         $module = $_GET['module'];
     endif;
 }
+
+include 'conectar.php';
+$id = $_SESSION['id'];
+
+if(isset($_POST['updateUser'])){
+    
+    $sqlquery = "UPDATE usuarios SET nombre='".$_POST['nombre']."', apellidos='".$_POST['apellidos']."',
+    usuario='".$_POST['usuario']."', clave='".$_POST['clave']."' WHERE id_usuario = $id";
+    $execute = sqlsrv_query($conn, $sqlquery);    
+}
+
+$sqlquery = "SELECT 
+nombre, apellidos, usuario,clave
+FROM 
+usuarios
+WHERE id_usuario = $id ";                                                                                     
+$result = sqlsrv_query($conn, $sqlquery);    
+$datos =  sqlsrv_fetch_array($result);                                                                                                        
+                
 ?>
 <script>
     document.getElementById("TitleModule").innerHTML = "Mi Perfil";
@@ -16,7 +35,7 @@ if (!$_SESSION['user']) {
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Información de Usuario</h1>
 </div>
-<form method="POST" action="mainsuper.php?module=updateperfil">
+<form method="POST" action="mainsuper.php?module=editperfil">
     <div class="card">
         <div class="card-header mx-auto">
             <button id="btnmodi" type="button" onclick="toEdit()" class="btn btn-warning">
@@ -30,43 +49,22 @@ if (!$_SESSION['user']) {
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label>Nombre:</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" name="nombre" placeholder="" value=<?php
-
-                                                                                                                            include 'conectar.php';
-                                                                                                                            $id = $_SESSION['id'];
-                                                                                                                            $sqlquery = "SELECT 
-               nombre,apellidos,usuario,clave
-                FROM 
-            [presupuesto].[dbo].usuarios
-        WHERE id_usuario = $id ";
-                                                                                                                            $result = sqlsrv_query($conn, $sqlquery);
-
-                                                                                                                            #creates sessions
-                                                                                                                            while ($row = sqlsrv_fetch_array($result)) {
-
-                                                                                                                                $_SESSION['nameedit'] = $row['nombre'];
-                                                                                                                                $_SESSION['lastnameedit'] = $row['apellidos'];
-                                                                                                                                $_SESSION['useredit'] = $row['usuario'];
-                                                                                                                                $_SESSION['passwedit'] = $row['clave'];
-                                                                                                                            }
-                                                                                                                            echo $_SESSION['nameedit']
-
-
-                                                                                                                            ?> disabled>
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="nombre" 
+                    placeholder="" value="<?php echo $datos['nombre'] ?>" disabled>
                 </div>
                 <div class="col col-md-6">
                     <label for="inputPassword4">Apellidos:</label>
-                    <input type="text" class="form-control" name="apellidos" placeholder="" value=<?php echo $_SESSION['lastnameedit'] ?> disabled>
+                    <input type="text" class="form-control" name="apellidos" placeholder="" value=<?php echo $datos['apellidos'] ?> disabled>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Usuario:</label>
-                    <input type="text" class="form-control" id="inputEmail4" name="usuario" placeholder="" value=<?php echo $_SESSION['useredit']  ?> disabled>
+                    <input type="text" class="form-control" id="inputEmail4" name="usuario" placeholder="" value=<?php echo $datos['usuario']  ?> disabled>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Contraseña:</label>
-                    <input type="password" class="form-control" id="inputPassword4" name="calve" placeholder="" value=<?php echo $_SESSION['passwedit']  ?> disabled>
+                    <input type="password" class="form-control" id="inputPassword4" name="clave" placeholder="" value=<?php echo $datos['clave']  ?> disabled>
                 </div>
 
             </div>
@@ -74,7 +72,7 @@ if (!$_SESSION['user']) {
     </div>
     <br>
     <div class="form-group">
-        <button id="btnsave" type="submit" class="btn btn-success btn-lg" style="display:none">Guardar</button>
+        <input id="btnsave" value="Guardar" name="updateUser" type="submit" class="btn btn-success btn-lg" style="display:none"></button>
     </div>
 
 </form>
