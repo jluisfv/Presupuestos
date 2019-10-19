@@ -26,7 +26,7 @@ include 'conectar.php';
 
     echo $id;
 	
-$sqlquery = "INSERT INTO [presupuesto].[dbo].detalle (id_presupuesto,detalle,costo_estimado,id_rubro)
+$sqlquery = "INSERT INTO detalle (id_presupuesto,detalle,costo_estimado,id_rubro)
 VALUES ('$id','$detalle','$monto','$rubro')
 ";
 

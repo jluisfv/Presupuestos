@@ -30,8 +30,8 @@ endif;
  include 'conectar.php';
  $idp = $_GET['iddt'];
         $sqlquery = "SELECT a.id_presupuesto,a.id_detalle,a.detalle,a.costo_estimado,b.id_rubro from 
-                                    [presupuesto].[dbo].detalle a
-                                    join [presupuesto].[dbo].rubro b on a.id_rubro = b.id_rubro
+                                    detalle a
+                                    join rubro b on a.id_rubro = b.id_rubro
                                     where a.id_detalle = $idp ";
                                     $result = sqlsrv_query($conn,$sqlquery);
                                     while($row = sqlsrv_fetch_array($result)){
@@ -39,7 +39,7 @@ endif;
                                     
 
 ?>
-<form method="POST" action="mainsuper.php?module=procesarupddt">
+<form method="POST" action="mainreport.php?module=procesarupddt">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Detalle:</label>
@@ -59,13 +59,13 @@ endif;
                 <?php
                 include 'conectar.php';
                 $sqlquery ="SELECT a.id_rubro,nombre 
-                    from [presupuesto].[dbo].rubro a
-                    left outer join [presupuesto].[dbo].detalle b  on a.id_rubro = b.id_rubro
+                    from rubro a
+                    left outer join detalle b  on a.id_rubro = b.id_rubro
                     where b.id_detalle = $idp
                     union all
                     SELECT id_rubro,nombre 
-                    from [presupuesto].[dbo].rubro 
-                    where id_rubro != (select id_rubro from [presupuesto].[dbo].detalle where id_detalle = $idp)";
+                    from rubro 
+                    where id_rubro != (select id_rubro from detalle where id_detalle = $idp)";
                 $result = sqlsrv_query($conn,$sqlquery);
                 while($row = sqlsrv_fetch_array($result)){
                 ?>

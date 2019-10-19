@@ -6,9 +6,9 @@ include 'conectar.php';
     $id = $_POST["idpresu"];
     $hoy = date('y-m-d');
 
-    $sqlquery = "INSERT INTO [presupuesto].[dbo].revisiones (id_presupuesto,mejoras_requeridas,estado,fecha)
+    $sqlquery = "INSERT INTO revisiones (id_presupuesto,mejoras_requeridas,estado,fecha)
     VALUES ($id,'$desc',1,'$hoy')";
-    $sqlquery2 = "UPDATE [presupuesto].[dbo].presupuesto SET estado = 3 where id_presupuesto = $id" ; 
+    $sqlquery2 = "UPDATE presupuesto SET estado = 3 where id_presupuesto = $id" ; 
 
 
 

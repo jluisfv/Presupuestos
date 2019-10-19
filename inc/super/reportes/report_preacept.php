@@ -1,5 +1,5 @@
 <?php
-require('fpdf.php');
+require('fpdf/fpdf.php');
 
 class PDF extends FPDF
 {
@@ -14,7 +14,7 @@ function Header()
     // Arial bold 15
        $this->Cell(50);
     // Título
-       $this ->Image('logo.png' , 0 ,2, 35 , 38);
+       $this ->Image('fpdf/logo.png' , 0 ,2, 35 , 38);
      $this->SetFont('Arial','B',10);
      $this->Cell(100,10,'Empresa Fantasma S.A de C.V ',0,1,'C');
      $this->SetFont('Arial','B',15);
@@ -57,14 +57,14 @@ function Footer()
 }
 
 $anio = $_GET['id'];
-include 'conectar.php';
+include '../../../conectar.php';
 $sql = "SELECT 
 b.id_presupuesto,
 titulo,
 descripcion,
 fecha_publicacion
 from 
-[presupuesto].[dbo].presupuesto b
+presupuesto b
 join aprovados a on b.id_presupuesto = a.id_presupuesto where datepart(year,fecha_publicacion) = $anio";
 $result = sqlsrv_query($conn,$sql);
 

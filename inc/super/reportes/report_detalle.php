@@ -1,5 +1,5 @@
 <?php
-require('fpdf.php');
+require('fpdf/fpdf.php');
 
 class PDF extends FPDF
 {
@@ -8,7 +8,7 @@ function Header()
 {
     // Logo
      $idp = $_GET['id'];
-    include 'conectar.php';
+    include '../../../conectar.php';
 $sql = "SELECT 
 b.id_presupuesto,
 titulo,
@@ -16,7 +16,7 @@ descripcion,
 fecha_publicacion,
 fecha_vencimiento
 from 
-[presupuesto].[dbo].presupuesto b
+[dbo].presupuesto b
 
 where b.id_presupuesto = $idp
 ";
@@ -25,7 +25,7 @@ $result = sqlsrv_query($conn,$sql);
     // Arial bold 15
        $this->Cell(50);
     // Título
-       $this ->Image('logo.png' , 0 ,2, 35 , 38);
+       $this ->Image('fpdf/logo.png' , 0 ,2, 35 , 38);
      $this->SetFont('Arial','B',10);
      $this->Cell(100,10,'Empresa Fantasma S.A de C.V ',0,1,'C');
      $this->SetFont('Arial','B',15);
@@ -91,7 +91,7 @@ function Footer()
 }
 }
 
-include 'conectar.php';
+include '../../../conectar.php';
   $idp = $_GET['id'];
                 
                 $sqlquery =  "
@@ -104,10 +104,10 @@ include 'conectar.php';
                                 c.detalle as deta_rea,
                                 c.archivo
                                 from 
-                                [presupuesto].[dbo].presupuesto a
-                                join [presupuesto].[dbo].detalle b on a.id_presupuesto = b.id_presupuesto
-                                join [presupuesto].[dbo].ejecucion c on b.id_detalle = c.id_detalle
-                                join [presupuesto].[dbo].rubro d on b.id_rubro = d.id_rubro
+                                [dbo].presupuesto a
+                                join [dbo].detalle b on a.id_presupuesto = b.id_presupuesto
+                                join [dbo].ejecucion c on b.id_detalle = c.id_detalle
+                                join [dbo].rubro d on b.id_rubro = d.id_rubro
 
                                 where c.id_presupuesto =  $idp        ";
 

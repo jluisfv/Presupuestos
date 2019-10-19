@@ -1,5 +1,5 @@
 <?php
-require('fpdf.php');
+require('fpdf/fpdf.php');
 
 class PDF extends FPDF
 {
@@ -10,7 +10,7 @@ function Header()
     $anio = $_GET['id'];
         // Título
     $this->Cell(50);
-       $this ->Image('logo.png' , 0 ,2, 35 , 38);
+       $this ->Image('fpdf/logo.png' , 0 ,2, 35 , 38);
      $this->SetFont('Arial','B',10);
      $this->Cell(100,10,'Empresa Fantasma S.A de C.V ',0,1,'C');
      $this->SetFont('Arial','B',15);
@@ -55,18 +55,18 @@ b.detalle,
 a.costo_real,
 a.detalle as det,
 d.fecha_publicacion
-from presupuesto.dbo.ejecucion a
-join presupuesto.dbo.detalle b  on a.id_detalle = b.id_detalle
-join presupuesto.dbo.rubro c  on b.id_rubro = c.id_rubro
-join presupuesto.dbo.presupuesto d on  a.id_presupuesto = d.id_presupuesto and datepart(year,fecha_publicacion) = $anio ";
+from ejecucion a
+join detalle b  on a.id_detalle = b.id_detalle
+join rubro c  on b.id_rubro = c.id_rubro
+join presupuesto d on  a.id_presupuesto = d.id_presupuesto and datepart(year,fecha_publicacion) = $anio ";
 $result = sqlsrv_query($conn,$sql);
 $sqlqueri ="SELECT 
 sum(b.costo_estimado) as suma_estimado,
 sum(a.costo_real) as suma_real
-from presupuesto.dbo.ejecucion a
-join presupuesto.dbo.detalle b  on a.id_detalle = b.id_detalle
-join presupuesto.dbo.rubro c  on b.id_rubro = c.id_rubro
-join presupuesto.dbo.presupuesto d on  a.id_presupuesto = d.id_presupuesto and datepart(year,fecha_publicacion) = $anio ";
+from ejecucion a
+join detalle b  on a.id_detalle = b.id_detalle
+join rubro c  on b.id_rubro = c.id_rubro
+join presupuesto d on  a.id_presupuesto = d.id_presupuesto and datepart(year,fecha_publicacion) = $anio ";
 
 $result2 = sqlsrv_query($conn,$sqlqueri);
 function report_table_header ($Pdf) {

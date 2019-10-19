@@ -87,7 +87,7 @@ case when estado = 0 then 'no evaluado'
     when estado =  2 then 'Rechazado'
     when estado =  3 then 'Revision'  end as estados ,estado
 from 
-[dbo].presupuesto WHERE estado = 1 and datepart(year,fecha_publicacion) =$ano ";
+presupuesto WHERE estado = 1 and datepart(year,fecha_publicacion) =$ano ";
 $result = sqlsrv_query($conn,$sqlquery);
  while($row = sqlsrv_fetch_array($result)){
     ?>

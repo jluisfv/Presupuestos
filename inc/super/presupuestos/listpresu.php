@@ -130,7 +130,7 @@ case when estado = 0 then 'no evaluado'
     when estado =  2 then 'Rechazado'
     when estado =  3 then 'Revision'  end as estados ,estado
 from 
-[presupuesto].[dbo].presupuesto where datepart(year,fecha_publicacion) = $ano
+presupuesto where datepart(year,fecha_publicacion) = $ano
 and estado = $esta
 ";
 

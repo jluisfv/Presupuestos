@@ -18,7 +18,7 @@ titulo,
 descripcion,
 fecha_publicacion
 from 
-[presupuesto].[dbo].presupuesto
+presupuesto
 WHERE id_presupuesto = $id
 ";
 $result = sqlsrv_query($conn,$sqlquery);

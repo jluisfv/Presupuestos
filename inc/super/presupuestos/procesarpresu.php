@@ -24,7 +24,7 @@ include 'conectar.php';
     $id = $_POST["idpresu"]; 
 
     $sqlquery= "UPDATE  
-[presupuesto].[dbo].presupuesto SET titulo = '$titu',
+presupuesto SET titulo = '$titu',
 descripcion = '$desc' WHERE id_presupuesto = $id  ";
 
 $result = sqlsrv_query($conn,$sqlquery);

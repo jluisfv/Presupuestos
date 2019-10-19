@@ -18,7 +18,7 @@ titulo,
 descripcion,
 fecha_publicacion
 from 
-[presupuesto].[dbo].presupuesto
+presupuesto
 WHERE id_presupuesto = $idp
 ";
 $result = sqlsrv_query($conn,$sqlquery);
@@ -77,7 +77,7 @@ endif;
 
                     $idp = $_GET['id'];
 
-                        $sql = " IF  exists( SELECT * FROM [presupuesto].[dbo].ejecucion WHERE id_presupuesto = $idp )
+                        $sql = " IF  exists( SELECT * FROM ejecucion WHERE id_presupuesto = $idp )
                                     SELECT  1 as num
                                 else 
                                     SELECT  0 as num"; 
@@ -91,8 +91,8 @@ endif;
 
                      
                         $sqlquery = "SELECT a.id_presupuesto,a.id_detalle,a.detalle,a.costo_estimado,b.descripcion from 
-                                    [presupuesto].[dbo].detalle a
-                                    join [presupuesto].[dbo].rubro b on a.id_rubro = b.id_rubro
+                                    detalle a
+                                    join rubro b on a.id_rubro = b.id_rubro
                                     where a.id_presupuesto = $idp ";
                                     $result = sqlsrv_query($conn,$sqlquery);
                                     while($row = sqlsrv_fetch_array($result)){
@@ -141,10 +141,10 @@ endif;
                                 c.detalle as deta_rea,
                                 c.archivo
                                 from 
-                                [presupuesto].[dbo].presupuesto a
-                                join [presupuesto].[dbo].detalle b on a.id_presupuesto = b.id_presupuesto
-                                join [presupuesto].[dbo].ejecucion c on b.id_detalle = c.id_detalle
-                                join [presupuesto].[dbo].rubro d on b.id_rubro = d.id_rubro
+                                presupuesto a
+                                join detalle b on a.id_presupuesto = b.id_presupuesto
+                                join ejecucion c on b.id_detalle = c.id_detalle
+                                join rubro d on b.id_rubro = d.id_rubro
 
                                 where c.id_presupuesto =  $idp        ";
 
@@ -172,7 +172,7 @@ endif;
                                  <td></td>
                                  <td></td>
                                  <td></td>
-                                 <td><a href="http://localhost/Presupuestos/inc/super/presupuestos/report_detalle.php?id=<?php echo $_GET['id']?>" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Genera Reporte</a></td>
+                                 <td><a href="http://localhost/Presupuestos/inc/super/reportes/report_detalle.php?id=<?php echo $_GET['id']?>" target="_blank" onClick="window.open(this.href, this.target, 'width=700,height=700'); return false;" class="btn btn-success mr-2 ml-2">Genera Reporte</a></td>
                              </tr>
        <?php }
                 ?>

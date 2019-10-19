@@ -28,7 +28,7 @@ include 'conectar.php';
 
     echo $id;
 	
-$sqlquery = "UPDATE   [presupuesto].[dbo].detalle  SET detalle='$detalle',costo_estimado='$monto',id_rubro='$rubro'
+$sqlquery = "UPDATE detalle  SET detalle='$detalle',costo_estimado='$monto',id_rubro='$rubro'
 WHERE id_detalle = $iddt
 ";
 

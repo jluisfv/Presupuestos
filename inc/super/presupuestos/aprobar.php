@@ -7,7 +7,7 @@ include 'conectar.php';
     $coment = $_POST["mejoras"];
     $iduser = $_POST["id"];
     $hoy = getdate('y-m-d');
-    $sql="SELECT estado FROM [presupuesto].[dbo].presupuesto where id_presupuesto = $id ";
+    $sql="SELECT estado FROM presupuesto where id_presupuesto = $id ";
     $result3 = sqlsrv_query($conn,$sql);
 
     
@@ -27,10 +27,10 @@ if ($estado != 1 )
 	else
 	{
 		
-  	  $sqlquery = "INSERT INTO [presupuesto].[dbo].aprovados (id_presupuesto,estado,fecha,id_user,comentarion)
+  	  $sqlquery = "INSERT INTO aprovados (id_presupuesto,estado,fecha,id_user,comentarion)
    	 VALUES ($id,1,'$hoy',$iduser,'$coment')";
 
-	$sqlquery2 = "UPDATE [presupuesto].[dbo].presupuesto SET estado = 1 where id_presupuesto = $id" ; 
+	$sqlquery2 = "UPDATE presupuesto SET estado = 1 where id_presupuesto = $id" ; 
 
 
 

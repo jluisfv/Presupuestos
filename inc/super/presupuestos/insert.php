@@ -26,7 +26,7 @@ include 'conectar.php';
     $id = $_SESSION['id'];
     $idarea = $_POST["area"];
 	
-$sqlquery = "INSERT INTO [presupuesto].[dbo].presupuesto (titulo,descripcion,fecha_publicacion,fecha_vencimiento,id_usuario,estado,id_empresa,presu_id_area)
+$sqlquery = "INSERT INTO presupuesto (titulo,descripcion,fecha_publicacion,fecha_vencimiento,id_usuario,estado,id_empresa,presu_id_area)
 VALUES ('$Titulo','$description','$desde','$hasta',$id,0,1,$idarea)
 ";
 

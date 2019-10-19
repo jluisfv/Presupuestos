@@ -13,7 +13,7 @@ function Header()
 
      $idp = $_GET['id'];
      $ano = $_GET['anio'];
-     $sql = "SELECT nombre FROM rubro  where id_rubro  = $idp  ";
+     $sql = "SELECT nombre FROM rubro where id_rubro  = $idp  ";
         $result = sqlsrv_query($conn,$sql);     
          while($row = sqlsrv_fetch_array($result)){
             $nombre = $row["nombre"];

@@ -27,7 +27,7 @@ $dirsubida = "C:/xampp/htdocs/Presupuestos/img/";
 
 move_uploaded_file($fin[(($i+$distacia)+$distacia)], $imagenRuta);
 
-	$sqlquery = "INSERT INTO [presupuesto].[dbo].ejecucion (id_detalle,costo_real,detalle,estado,archivo,id_presupuesto)
+	$sqlquery = "INSERT INTO ejecucion (id_detalle,costo_real,detalle,estado,archivo,id_presupuesto)
 			VALUES ($iddetalle,$fin[$i],'$detall',1,'$rutaa',$idpresu)";
 
 $result = sqlsrv_query($conn,$sqlquery);

@@ -8,7 +8,7 @@ include 'conectar.php';
     $iduser = $_POST["id"];
     $hoy = date('Y-M-d');
 
-     $sql="SELECT estado FROM [presupuesto].[dbo].presupuesto where id_presupuesto = $id ";
+     $sql="SELECT estado FROM presupuesto where id_presupuesto = $id ";
     $result3 = sqlsrv_query($conn,$sql);
 
     
@@ -28,9 +28,9 @@ elseif ($estado == 3) {
 else
 {
 	
-    $sqlquery = "INSERT INTO [presupuesto].[dbo].rechazados (id_presupuesto,estado,fecha,coment,id_user)
+    $sqlquery = "INSERT INTO rechazados (id_presupuesto,estado,fecha,coment,id_user)
     VALUES ($id,1,'$hoy','$coment',$iduser)";
-$sqlquery2 = "UPDATE [presupuesto].[dbo].presupuesto SET estado = 2 where id_presupuesto = $id" ; 
+$sqlquery2 = "UPDATE presupuesto SET estado = 2 where id_presupuesto = $id" ; 
 
 
 $result = sqlsrv_query($conn,$sqlquery);

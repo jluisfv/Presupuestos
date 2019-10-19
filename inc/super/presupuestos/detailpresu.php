@@ -19,7 +19,7 @@ descripcion,
 fecha_publicacion,
 estado
 from 
-[presupuesto].[dbo].presupuesto
+presupuesto
 WHERE id_presupuesto = $idp
 ";
 $result = sqlsrv_query($conn,$sqlquery);
@@ -59,7 +59,7 @@ endif;
             {
                  $idp = $_GET['id'];
                 $sql = "SELECT comentarion ,nombre+' '+apellidos as nombres
-                from [presupuesto].[dbo].aprovados 
+                from aprovados 
                 join usuarios on  id_usuario =  id_user
                  where id_presupuesto = $idp ";
 
@@ -83,7 +83,7 @@ endif;
                 # code...
                  $idp = $_GET['id'];
                 $sql = "SELECT coment ,nombre+' '+apellidos as nombres
-                from [presupuesto].[dbo].rechazados 
+                from rechazados 
                 join usuarios on  id_usuario =  id_user
                  where id_presupuesto = $idp ";
 
@@ -130,9 +130,9 @@ endif;
                     <?php include 'conectar.php';
                      $idp = $_GET['id'];
                         $sqlquery = "SELECT a.id_detalle,a.detalle,a.costo_estimado,b.descripcion from 
-                                    [presupuesto].[dbo].detalle a
-                                    join [presupuesto].[dbo].rubro b on a.id_rubro = b.id_rubro
-                                    where a.id_presupuesto = $idp ";
+                                    detalle a
+                                    join rubro b on a.id_rubro = b.id_rubro
+                                    where a.id_presupuesto = $idp order by b.descripcion asc";
                                     $result = sqlsrv_query($conn,$sqlquery);
                                     while($row = sqlsrv_fetch_array($result)){
 
@@ -164,9 +164,9 @@ endif;
                     <?php include 'conectar.php';
                      $idp = $_GET['id'];
                         $sqlquery = "SELECT a.id_detalle,a.detalle,a.costo_estimado,b.descripcion from 
-                                    [presupuesto].[dbo].detalle a
-                                    join [presupuesto].[dbo].rubro b on a.id_rubro = b.id_rubro
-                                    where a.id_presupuesto = $idp ";
+                                    detalle a
+                                    join rubro b on a.id_rubro = b.id_rubro
+                                    where a.id_presupuesto = $idp order by b.descripcion asc";
                                     $result = sqlsrv_query($conn,$sqlquery);
                                     while($row = sqlsrv_fetch_array($result)){
 

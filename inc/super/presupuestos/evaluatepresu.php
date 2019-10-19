@@ -20,7 +20,7 @@ titulo,
 descripcion,
 fecha_publicacion
 from 
-[presupuesto].[dbo].presupuesto WHERE id_presupuesto = $id ";
+presupuesto WHERE id_presupuesto = $id ";
 
 $result = sqlsrv_query($conn,$sqlquery);
  while($row = sqlsrv_fetch_array($result)){
@@ -88,8 +88,8 @@ endif;
                     <?php include 'conectar.php';
                      $idp = $_GET['id'];
                         $sqlquery = "SELECT a.id_detalle,a.detalle,a.costo_estimado,b.descripcion from 
-                                    [presupuesto].[dbo].detalle a
-                                    join [presupuesto].[dbo].rubro b on a.id_rubro = b.id_rubro
+                                    detalle a
+                                    join rubro b on a.id_rubro = b.id_rubro
                                     where a.id_presupuesto = $idp ";
                                     $result = sqlsrv_query($conn,$sqlquery);
                                     while($row = sqlsrv_fetch_array($result)){

@@ -27,7 +27,7 @@ endif;
     <h1 class="h3 mb-0 text-gray-800">Detalle Presupuesto</h1>
 </div>
 
-<form method="Get" action="http://localhost/Presupuestos/inc/super/presupuestos/repor_recha.php">
+<form method="Get" action="http://localhost/Presupuestos/inc/super/reportes/repor_recha.php">
   
     <div class="form-row">
 

@@ -45,7 +45,7 @@ endif;
             <select id="inputState" class="form-control" name="rubro">
                 <?php
                 include 'conectar.php';
-                $sqlquery ="SELECT id_rubro,nombre from [presupuesto].[dbo].rubro";
+                $sqlquery ="SELECT id_rubro,nombre from rubro";
                 $result = sqlsrv_query($conn,$sqlquery);
                 while($row = sqlsrv_fetch_array($result)){
                 ?>

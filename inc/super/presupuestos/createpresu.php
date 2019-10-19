@@ -48,7 +48,7 @@ endif;
                 $sqlquery ="
                 SELECT 0 AS id_area,'Seleccione' as nom_area
                 UNION
-                SELECT id_area,nom_area from [presupuesto].[dbo].areas";
+                SELECT id_area,nom_area from areas";
                 $result = sqlsrv_query($conn,$sqlquery);
                 while($row = sqlsrv_fetch_array($result)){
                 ?>
